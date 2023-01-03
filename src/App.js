@@ -9,7 +9,7 @@ function App() {
       <div className='container'>
         <Routes>
           <Route path='/' element={<UserList/>}/>
-          <Route path='/add' element={<AddUser/>}/>
+          <Route path='add' element={<AddUser/>}/>
         </Routes>
       </div>
     </BrowserRouter>
