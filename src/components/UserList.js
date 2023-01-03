@@ -20,9 +20,6 @@ const UserList = () => {
   return (
     <div className="columns">
       <div className="column is-half">
-        {/* <button className="button is-info is-small mb-2" component={Link} to="add">
-          Link
-        </button> */}
         <Link to="/add">
             <button className="button is-info is-small mt-2">Add Data</button>
         </Link>
