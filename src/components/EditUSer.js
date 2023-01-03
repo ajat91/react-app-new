@@ -10,7 +10,7 @@ const EditUser = () => {
   const {id}=useParams();
   useEffect (()=>{
     getById();
-  },[])
+  })
 
   const saveDataUser=async (e)=>{
       e.preventDefault();
