@@ -1,12 +1,16 @@
-import React,{useState} from "react";
-import { Link,useNavigate } from "react-router-dom";
+import React,{useState,useEffect} from "react";
+import { Link,useNavigate,useParams} from "react-router-dom";
 import { repositoryMethod } from "../repository";
 
-const AddUser = () => {
+const EditUser = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [gender, setGender] = useState("");
   const navigate=useNavigate();
+  const {id}=useParams();
+  useEffect (()=>{
+    getById();
+  },[])
 
   const saveDataUser=async (e)=>{
       e.preventDefault();
@@ -19,6 +23,13 @@ const AddUser = () => {
       }
   }
 
+  const getById =async ()=>{
+    const response = await repositoryMethod.methodList.getDataById(id);
+    setEmail(response.data.email);
+    setName(response.data.name);
+    setGender(response.data.gender);
+  }
+  
   return (
     <div className="columns mt-5">
       <div className="column is-half">
@@ -48,7 +59,7 @@ const AddUser = () => {
           </div>
           <div className="field">
             <div className="control">
-              <button className="button is-success is-small" type="submit">Save</button>
+              <button className="button is-success is-small" type="submit">Update</button>
               <Link to="/">
                 <button className="button is-info is-small ml-2">
                   List User
@@ -62,4 +73,4 @@ const AddUser = () => {
   );
 };
 
-export default AddUser;
+export default EditUser;
