@@ -14,6 +14,15 @@ const UserList = () => {
     setUser(val.data);
   };
 
+  const deleteData= async (id)=>{
+      try {
+          await methodRepository.methodList.deleteData(id);
+          getUsers();
+      } catch (error) {
+          console.log(error)
+      }
+  }
+
   return (
     <div className="columns">
       <div className="column is-half">
@@ -39,7 +48,7 @@ const UserList = () => {
                 <th>{val.gender}</th>
                 <th>
                   <Link to={`/edit/${val.id}`} className="button is-info is-small mr-2">Edit</Link>
-                  <button className="button is-danger is-small">Delete</button>
+                  <button onClick={()=>deleteData(val.id)} className="button is-danger is-small">Delete</button>
                 </th>
               </tr>
             ))}

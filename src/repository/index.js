@@ -16,7 +16,8 @@ const methodList={
     getData: () => axios.get(connection.URL + "/users"),
     postData: (data) => axios.post(connection.URL + "/user",data),
     getDataById: (id) => axios.get(connection.URL + `/user/${id}`),
-    updateData: (id,data) => axios.put(connection.URL + `/user/${id}`,data)
+    updateData: (id,data) => axios.put(connection.URL + `/user/${id}`,data),
+    deleteData: (id) => axios.delete(connection.URL + `/user/${id}`)
 }
 
 
