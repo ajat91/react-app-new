@@ -6,6 +6,9 @@ const EditUser = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [gender, setGender] = useState("");
+  
+
+  
   const navigate=useNavigate();
   const {id}=useParams();
 
@@ -14,11 +17,14 @@ const EditUser = () => {
     setEmail(response.data.email);
     setName(response.data.name);
     setGender(response.data.gender);
+    
+    
   }
   
   useEffect (()=>{
+    //const data ={name,email,gender}
     getById();
-  });
+  },[name,email,gender]);
 
   const updateDataUser=async (e)=>{
       e.preventDefault();
@@ -30,8 +36,6 @@ const EditUser = () => {
       }
   }
 
-  
-  
   return (
     <div className="columns mt-5">
       <div className="column is-half">
@@ -39,7 +43,7 @@ const EditUser = () => {
           <div className="field">
             <label className="label">Name</label>
             <div className="control">
-              <input type="text" className="input" placeholder="Name" value={name} onChange={(e)=>setName(e.target.value)}/>
+              <input type="text" className="input" value={name} onChange={(e)=>setName(e.target.value)}/>
             </div>
           </div>
           <div className="field">
