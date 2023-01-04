@@ -36,7 +36,7 @@ const UserList = () => {
               <th>Name</th>
               <th>Email</th>
               <th>Gender</th>
-              <th>Action</th>
+              <th >Action</th>
             </tr>
           </thead>
           <tbody>
@@ -47,8 +47,11 @@ const UserList = () => {
                 <th>{val.email}</th>
                 <th>{val.gender}</th>
                 <th>
-                  <Link to={`/edit/${val.id}`} className="button is-info is-small mr-2">Edit</Link>
-                  <button onClick={()=>deleteData(val.id)} className="button is-danger is-small">Delete</button>
+                 
+                  <Link to={`/edit/${val.id}`} className="button is-info is-small">Edit</Link>
+                  <button   onClick={()=>deleteData(val.id)} className="button is-danger is-small ml-2">Delete</button>
+                  
+                  
                 </th>
               </tr>
             ))}

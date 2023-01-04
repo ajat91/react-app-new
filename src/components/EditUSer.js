@@ -2,29 +2,41 @@ import React,{useState,useEffect} from "react";
 import { Link,useNavigate,useParams} from "react-router-dom";
 import { methodRepository } from "../repository";
 
-const EditUser = (user) => {
+const EditUser = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [gender, setGender] = useState("");
-  
-
-  
   const navigate=useNavigate();
   const {id}=useParams();
 
-  const getById =async ()=>{
-    const response = await methodRepository.methodList.getDataById(id);
-    setEmail(response.data.email);
-    setName(response.data.name);
-    setGender(response.data.gender);
-    
-    
-  }
   
+ 
+
   useEffect (()=>{
-    //const data ={name,email,gender}
+    const getById=async()=>{
+      const response = await methodRepository.methodList.getDataById(id);
+      console.log(response)
+    
+      setEmail(response.data.email);
+      setName(response.data.name);
+      setGender(response.data.gender);
+    }
     getById();
-  },[user]);
+    //let ignore=false;
+    
+    //return ()=>{ignore=true};
+    // const response =  methodRepository.methodList.getDataById(id);
+    // console.log(response)
+  
+    // setEmail(response.data.email);
+    // setName(response.data.name);
+    // setGender(response.data.gender);
+    //setUserDetails(response);
+  },[id]);
+
+  
+  
+  
 
   const updateDataUser=async (e)=>{
       e.preventDefault();
