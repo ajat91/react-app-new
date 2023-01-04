@@ -11,7 +11,7 @@ const EditUser = () => {
 
   useEffect (()=>{
     getById();
-  },[]);
+  },[name,email,gender]);
 
   const updateDataUser=async (e)=>{
       e.preventDefault();
