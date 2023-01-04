@@ -9,9 +9,16 @@ const EditUser = () => {
   const navigate=useNavigate();
   const {id}=useParams();
 
+  const getById =async ()=>{
+    const response = await methodRepository.methodList.getDataById(id);
+    setEmail(response.data.email);
+    setName(response.data.name);
+    setGender(response.data.gender);
+  }
+  
   useEffect (()=>{
     getById();
-  },[name,email,gender]);
+  });
 
   const updateDataUser=async (e)=>{
       e.preventDefault();
@@ -23,12 +30,7 @@ const EditUser = () => {
       }
   }
 
-  const getById =async ()=>{
-    const response = await methodRepository.methodList.getDataById(id);
-    setEmail(response.data.email);
-    setName(response.data.name);
-    setGender(response.data.gender);
-  }
+  
   
   return (
     <div className="columns mt-5">
