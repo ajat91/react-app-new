@@ -9,34 +9,15 @@ const EditUser = () => {
   const navigate=useNavigate();
   const {id}=useParams();
 
-  
- 
-
   useEffect (()=>{
-    const getById=async()=>{
+    const getById = async ()=>{
       const response = await methodRepository.methodList.getDataById(id);
-      console.log(response)
-    
       setEmail(response.data.email);
       setName(response.data.name);
       setGender(response.data.gender);
     }
     getById();
-    //let ignore=false;
-    
-    //return ()=>{ignore=true};
-    // const response =  methodRepository.methodList.getDataById(id);
-    // console.log(response)
-  
-    // setEmail(response.data.email);
-    // setName(response.data.name);
-    // setGender(response.data.gender);
-    //setUserDetails(response);
   },[id]);
-
-  
-  
-  
 
   const updateDataUser=async (e)=>{
       e.preventDefault();
