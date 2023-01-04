@@ -2,7 +2,7 @@ import React,{useState,useEffect} from "react";
 import { Link,useNavigate,useParams} from "react-router-dom";
 import { methodRepository } from "../repository";
 
-const EditUser = () => {
+const EditUser = (user) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [gender, setGender] = useState("");
@@ -24,7 +24,7 @@ const EditUser = () => {
   useEffect (()=>{
     //const data ={name,email,gender}
     getById();
-  },[name]);
+  },[user]);
 
   const updateDataUser=async (e)=>{
       e.preventDefault();
