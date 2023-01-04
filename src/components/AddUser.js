@@ -1,6 +1,6 @@
 import React,{useState} from "react";
 import { Link,useNavigate } from "react-router-dom";
-import { repositoryMethod } from "../repository";
+import { methodRepository } from "../repository";
 
 const AddUser = () => {
   const [name, setName] = useState("");
@@ -10,9 +10,8 @@ const AddUser = () => {
 
   const saveDataUser=async (e)=>{
       e.preventDefault();
-      
       try {
-        await repositoryMethod.methodList.postData({name,email,gender})
+        await methodRepository.methodList.postData({name,email,gender})
         navigate("/")
       } catch (error) {
         console.log(error)
@@ -26,20 +25,21 @@ const AddUser = () => {
           <div className="field">
             <label className="label">Name</label>
             <div className="control">
-              <input type="text" className="input" placeholder="Name" value={name} onChange={(e)=>setName(e.target.value)}/>
+              <input type="text" className="input" placeholder="Name" value={name} onChange={(e)=>setName(e.target.value)} required/>
             </div>
           </div>
           <div className="field">
             <label className="label">Email</label>
             <div className="control">
-              <input type="text" className="input" placeholder="Email" value={email} onChange={(e)=>setEmail(e.target.value)}/>
+              <input type="text" className="input" placeholder="Email" value={email} onChange={(e)=>setEmail(e.target.value)} required/>
             </div>
           </div>
           <div className="field">
             <label className="label">Gender</label>
             <div className="control">
               <div className="select is-fullwitdh">
-                <select value={gender} onChange={(e)=>setGender(e.target.value)}>
+                <select value={gender} onChange={(e)=>setGender(e.target.value)} required>
+                  <option value="">Select Gender</option>
                   <option value="Male">Male</option>
                   <option value="Female">Female</option>
                 </select>

@@ -1,6 +1,6 @@
 import React,{useState,useEffect} from "react";
 import { Link,useNavigate,useParams} from "react-router-dom";
-import { repositoryMethod } from "../repository";
+import { methodRepository } from "../repository";
 
 const EditUser = () => {
   const [name, setName] = useState("");
@@ -8,15 +8,15 @@ const EditUser = () => {
   const [gender, setGender] = useState("");
   const navigate=useNavigate();
   const {id}=useParams();
+
   useEffect (()=>{
     getById();
-  })
+  },[])
 
-  const saveDataUser=async (e)=>{
+  const updateDataUser=async (e)=>{
       e.preventDefault();
-      
       try {
-        await repositoryMethod.methodList.postData({name,email,gender})
+        await methodRepository.methodList.updateData(id,{name,email,gender})
         navigate("/")
       } catch (error) {
         console.log(error)
@@ -24,7 +24,7 @@ const EditUser = () => {
   }
 
   const getById =async ()=>{
-    const response = await repositoryMethod.methodList.getDataById(id);
+    const response = await methodRepository.methodList.getDataById(id);
     setEmail(response.data.email);
     setName(response.data.name);
     setGender(response.data.gender);
@@ -33,7 +33,7 @@ const EditUser = () => {
   return (
     <div className="columns mt-5">
       <div className="column is-half">
-        <form onSubmit={saveDataUser}>
+        <form onSubmit={updateDataUser}>
           <div className="field">
             <label className="label">Name</label>
             <div className="control">
@@ -51,6 +51,7 @@ const EditUser = () => {
             <div className="control">
               <div className="select is-fullwitdh">
                 <select value={gender} onChange={(e)=>setGender(e.target.value)}>
+                <option value="">Select Gender</option>
                   <option value="Male">Male</option>
                   <option value="Female">Female</option>
                 </select>

@@ -15,10 +15,11 @@ const connection = {
 const methodList={
     getData: () => axios.get(connection.URL + "/users"),
     postData: (data) => axios.post(connection.URL + "/user",data),
-    getDataById: (id) => axios.get(connection.URL + `/user/${id}`)
+    getDataById: (id) => axios.get(connection.URL + `/user/${id}`),
+    updateData: (id,data) => axios.put(connection.URL + `/user/${id}`,data)
 }
 
 
-export const repositoryMethod = {
+export const methodRepository = {
  methodList
 }

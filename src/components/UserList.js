@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import {repositoryMethod} from "../repository";
+import {methodRepository} from "../repository";
 
 const UserList = () => {
   const [users, setUser] = useState([]);
-  //const [idUser, setIdUser] = useState();
 
   useEffect(() => {
     getUsers();
   }, []);
 
   const getUsers = async () => {
-    const val = await repositoryMethod.methodList.getData()
+    const val = await methodRepository.methodList.getData()
     setUser(val.data);
   };
 
